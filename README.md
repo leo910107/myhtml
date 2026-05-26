@@ -2,6 +2,32 @@
 
 這是一個 Flask 個人網站，包含首頁、筆記、學習紀錄、關於我、站內搜尋，以及登入後的檔案上傳/刪除功能。
 
+## Current Simple Deployment
+
+目前先使用 GitHub Pages 靜態網站版本。根目錄的這些檔案會直接被 GitHub Pages 發佈：
+
+```text
+index.html
+note.html
+learning_record.html
+file.html
+about.html
+static/
+downloads/
+```
+
+GitHub Pages 上線方式：
+
+1. 到 GitHub repo `leo910107/myhtml`。
+2. 進入 `Settings` -> `Pages`。
+3. Source 選 `Deploy from a branch`。
+4. Branch 選 `main`，Folder 選 `/root`。
+5. 儲存後，網站會在 `https://leo910107.github.io/myhtml/`。
+
+這個版本沒有後台登入、站內搜尋、網頁上傳或刪除檔案。要新增或刪除檔案時，請在 VS Code 修改 `file.html`，並把 PDF 放進或移出 `downloads/`，再 commit/push 到 GitHub。
+
+下面的 Flask + Cloudflare R2 說明先保留，之後如果要恢復後台上傳功能可以接著用。
+
 ## Local Development
 
 ```bash

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}常用檔案 | Cheng-Ho Wang{% endblock %}
+{% block meta_description %}Cheng-Ho Wang 整理的常用學習檔案與課程資料。{% endblock %}
+{% block og_title %}常用檔案 | Cheng-Ho Wang{% endblock %}
+{% block og_description %}Cheng-Ho Wang 整理的常用學習檔案與課程資料。{% endblock %}
+
+{% block content %}
+    {# --- ↓↓↓ 我們在這裡加上一個帶有 class 的 div 來包住所有內容 ↓↓↓ --- #}
+    <div class="file-page-content">
+
+        <h1>常用檔案管理</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {# --- 1. 上傳區塊 --- #}
+        {% if session.logged_in %}
+            <h2>使用量</h2>
+            <div class="usage-summary">
+                <p>
+                    儲存容量：
+                    {{ format_bytes(storage_stats.total_bytes) }}
+                    {% if storage_limits.max_total_storage_bytes > 0 %}
+                        / {{ format_bytes(storage_limits.max_total_storage_bytes) }}
+                    {% endif %}
+                </p>
+                <p>
+                    檔案數量：
+                    {{ storage_stats.file_count }}
+                    {% if storage_limits.max_file_count > 0 %}
+                        / {{ storage_limits.max_file_count }}
+                    {% endif %}
+                </p>
+                {% if storage_limits.max_downloads_per_hour_per_ip > 0 %}
+                    <p>同一 IP 每小時下載上限：{{ storage_limits.max_downloads_per_hour_per_ip }} 次</p>
+                {% endif %}
+            </div>
+
+            <h2>管理分類</h2>
+            <form action="{{ url_for('add_category') }}" method="post" class="category-form">
+                <label for="category_input">新增分類：</label>
+                <input type="text" name="category" id="category_input" required>
+                <button type="submit">新增分類</button>
+            </form>
+
+            <h2>上傳新檔案</h2>
+            <form method="post" enctype="multipart/form-data" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 10px;">
+                    <label for="file_input">選擇檔案：</label>
+                    <input type="file" name="file_to_upload" id="file_input" required>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label for="category_select">選擇分類：</label>
+                    <select name="category" id="category_select">
+                        {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit">上傳檔案</button>
+            </form>
+        {% else %}
+            <p><i>請<a href="{{ url_for('login') }}">登入</a>以使用上傳功能。</i></p>
+        {% endif %}
+
+        <hr>
+
+        {# --- 2. 檔案顯示區塊 --- #}
+        <h2>已上傳的檔案</h2>
+
+        {% if categories %}
+            {% for category in categories %}
+                {% set files = categorized_files.get(category, []) %}
+                <div class="category-heading">
+                    <h3>{{ category }}</h3>
+                    {% if session.logged_in %}
+                        <form action="{{ url_for('delete_category') }}" method="post">
+                            <input type="hidden" name="category" value="{{ category }}">
+                            <button type="submit" class="delete-btn" onclick="return confirm('您確定要刪除這個分類嗎？分類裡有檔案時不會被刪除。');">刪除分類</button>
+                        </form>
+                    {% endif %}
+                </div>
+
+                {% if files %}
+                <ul class="file-list">
+                    {% for filename in files %}
+                        <li>
+                            <a href="{{ url_for('download_file', filepath=category + '/' + filename) }}" target="_blank">{{ filename }}</a>
+
+                            {% if session.logged_in %}
+                                <form action="{{ url_for('delete_file') }}" method="post" style="display: inline; margin-left: 10px;">
+                                    <input type="hidden" name="category" value="{{ category }}">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <button type="submit" class="delete-btn" onclick="return confirm('您確定要刪除這個檔案嗎？');">刪除</button>
+                                </form>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>這個分類目前沒有檔案。</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>目前沒有分類。</p>
+        {% endif %}
+
+    </div>
+    {# --- ↑↑↑ div 在這裡結束，確保所有內容都被包在裡面 ↑↑↑ --- #}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}搜尋結果 | Cheng-Ho Wang{% endblock %}
+{% block meta_description %}Cheng-Ho Wang 個人網站的站內搜尋結果。{% endblock %}
+{% block og_title %}搜尋結果 | Cheng-Ho Wang{% endblock %}
+{% block og_description %}Cheng-Ho Wang 個人網站的站內搜尋結果。{% endblock %}
+
+{% block content %}
+    <h1>搜尋 "{{ query }}" 的結果</h1>
+
+    {% if results %}
+        <p>找到了 {{ results|length }} 筆資料：</p>
+        <ul>
+            {% for item in results %}
+                <li>
+                    <strong>{{ item.title }}</strong>
+                    <p>{{ item.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>找不到任何與 "{{ query }}" 相關的資料。</p>
+    {% endif %}
+{% endblock %}

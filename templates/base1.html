@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Cheng-Ho Wang{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Cheng-Ho Wang 的個人網站，整理學習紀錄、筆記、作品集與常用檔案。{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Cheng-Ho Wang{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Cheng-Ho Wang 的個人網站，整理學習紀錄、筆記、作品集與常用檔案。{% endblock %}">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Iansui&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">首頁</a></li>
+        <li><a href="{{ url_for('note') }}">筆記</a></li>
+        <li><a href="{{ url_for('learning_record') }}">學習紀錄</a></li>
+        <li><a href="{{ url_for('file_page') }}">常用檔案</a></li>
+        <li><a href="{{ url_for('about') }}">關於我</a></li>
+
+        {# --- ↓↓↓ 把登入/登出連結的邏輯加在這裡 ↓↓↓ --- #}
+        {% if session.logged_in %}
+            {# 如果使用者已經登入，就顯示「登出」連結 #}
+            <li><a href="{{ url_for('logout') }}" style="color: #d9534f;">登出</a></li>
+        {% else %}
+            {# 如果使用者尚未登入，就顯示「管理員登入」連結 #}
+            <li><a href="{{ url_for('login') }}" style="color: #5cb85c;">管理員登入</a></li>
+        {% endif %}
+        {# --- ↑↑↑ 新增部分結束 ↑↑↑ --- #}
+
+    </ul>
+    <form action="/search" method="get" class="search-form">
+        <input type="text" name="query" placeholder="搜尋站內資訊...">
+        <button type="submit">搜尋</button>
+    </form>
+</nav>
+    <hr>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <p>&copy; All rights reserved</p>
+    </footer>
+</body>
+</html>

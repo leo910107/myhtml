@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+.venv/
+
+# PyCharm files
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local secrets and OS files
+.env
+.DS_Store
+downloads/_site_meta/
+
+# Logs
+*.log

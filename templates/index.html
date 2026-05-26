@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Cheng-Ho Wang{% endblock %}
+{% block meta_description %}Cheng-Ho Wang 的個人網站，整理經濟學、資料分析、程式設計學習紀錄與常用檔案。{% endblock %}
+{% block og_title %}Cheng-Ho Wang{% endblock %}
+{% block og_description %}Cheng-Ho Wang 的個人網站，整理經濟學、資料分析、程式設計學習紀錄與常用檔案。{% endblock %}
+
+{% block content %}
+    {# --- ↓↓↓ 我們在這裡加上一個帶有 class 的 div 來包住所有內容 ↓↓↓ --- #}
+    <div class="homepage-content">
+
+        <h1>Cheng-Ho Wang</h1>
+        <p>佛心公司╰(⊙д⊙)╮佛心公司╭(⊙д⊙)╯</p>
+
+        {# --- 圖片標籤保持不變 --- #}
+        <img src="{{ url_for('static', filename='img/167789143325_o.jpg') }}" alt="我的個人照片" class="homepage-image">
+
+        {# --- ↓↓↓ (小修正) 我幫你把連結變成一個標準的清單，看起來會更整齊 ↓↓↓ --- #}
+        <h2>常用連結</h2>
+        <ul>
+            <li>
+                <a href="https://www.google.com.tw" target="_blank">Google search</a>
+            </li>
+            <li>
+                <a href="https://zhleowang0107py.pythonanywhere.com/" target="_blank">This Website</a>
+            </li>
+        </ul>
+        {# --- ↑↑↑ 修正結束 ↑↑↑ --- #}
+
+    </div>
+    {# --- ↑↑↑ div 在這裡結束，確保所有內容都被包在裡面 ↑↑↑ --- #}
+{% endblock %}

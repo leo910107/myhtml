@@ -1,0 +1,228 @@
+/*
+ * 使用您親自找到的字體名稱來設定網站樣式
+*/
+
+body {
+  /*
+   * 瀏覽器會優先使用 'Iansui' 這個字體。
+   * 如果因為某些原因載入失敗，則會使用系統預設的無襯線字體 (sans-serif)。
+   * 根據您的要求，我們直接使用 'Iansui' 作為字體名稱。
+  */
+  font-family: 'Iansui', sans-serif;
+}
+
+
+/*
+ * 針對程式碼等需要等寬的元素
+*/
+code, pre, kbd {
+  /*
+   * 優先使用 'Google Sans Code'。
+   * 如果載入失敗，則使用系統預設的等寬字體 (monospace)。
+  */
+  font-family: 'Google Sans Code', monospace;
+}
+/* static/css/style.css */
+
+/* --- 導覽列樣式 --- */
+
+/* 整個 nav 容器的設定 */
+nav {
+    background-color: #f2f2f2; /* 給導覽列一個淺灰色背景 */
+    padding: 10px; /* 增加一點內邊距 */
+    display: flex; /* 使用 Flexbox 來排版，讓列表和搜尋框在同一行 */
+    justify-content: space-between; /* 讓列表靠左，搜尋框靠右 */
+    align-items: center; /* 垂直置中 */
+}
+
+/* 導覽列中的 ul 列表 */
+nav ul {
+    list-style-type: none; /* 移除項目符號 (小黑點) */
+    margin: 0;
+    padding: 0;
+}
+
+/* 導覽列中的 li 列表項目 */
+nav ul li {
+    display: inline-block; /* 讓列表項目橫向排列 */
+    margin-right: 20px; /* 增加項目之間的右邊距 */
+}
+
+/* 導覽列中的 a 連結 */
+nav ul li a {
+    color: #333; /* 設定連結文字顏色為深灰色 */
+    text-decoration: none; /* 移除連結底線 */
+    font-size: 16px; /* 調整字體大小 */
+    padding: 5px 10px; /* 增加點擊範圍 */
+    border-radius: 5px; /* 給一點圓角 */
+    transition: background-color 0.3s; /* 加入一個平滑的過渡效果 */
+}
+
+/* 滑鼠懸停在連結上時的樣式 */
+nav ul li a:hover {
+    background-color: #ddd; /* 改變背景顏色 */
+    color: #000; /* 改變文字顏色 */
+}
+
+/* 搜尋表單的樣式 (讓它不要影響排版) */
+.search-form {
+    display: inline-flex; /* 使用 Flexbox 對齊輸入框和按鈕 */
+}
+
+.flash-messages {
+  list-style-type: none;
+  padding: 10px 12px;
+  margin: 0 0 16px;
+  border: 1px solid #c8e6c9;
+  background-color: #f1f8e9;
+  color: #2e7d32;
+  border-radius: 5px;
+}
+
+.category-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.usage-summary {
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.usage-summary p {
+  margin: 4px 0;
+}
+
+.category-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.category-heading h3 {
+  margin-bottom: 8px;
+}
+/* --- 我的筆記頁面 連結清單樣式 --- */
+
+.link-list {
+  list-style-type: none; /* 移除項目符號 (小黑點) */
+  padding-left: 0;       /* 移除預設的左邊內縮 */
+  margin-top: 20px;      /* 增加與上方段落的距離 */
+}
+
+.link-list li {
+  margin-bottom: 12px; /* 增加每個連結之間的垂直間距 */
+}
+
+.link-list li a {
+  color: #0056b3;             /* 設定連結文字顏色為深藍色 */
+  text-decoration: none;       /* 移除連結底線 */
+  font-size: 18px;             /* 稍微放大字體 */
+  font-weight: bold;           /* 字體加粗 */
+  transition: color 0.2s;      /* 加入一個平滑的顏色過渡效果 */
+}
+
+/* 設定滑鼠懸停 (hover) 在連結上時的效果 */
+.link-list li a:hover {
+  color: #007bff;             /* 滑鼠移上去時，顏色變得更亮 */
+  text-decoration: underline;  /* 滑鼠移上去時，顯示底線，提示可以點擊 */
+}
+/* --- 檔案列表與刪除按鈕樣式 --- */
+.file-list li {
+  display: flex; /* 使用 Flexbox 來對齊檔名和按鈕 */
+  justify-content: space-between; /* 讓檔名靠左，按鈕靠右 */
+  align-items: center; /* 垂直置中 */
+  padding: 5px 0;
+}
+
+.delete-btn {
+  background-color: #f44336; /* 紅色背景 */
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer; /* 滑鼠移上去時顯示手形指標 */
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f; /* 滑鼠懸停時顏色加深 */
+}
+.homepage-image {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  /* --- ↓↓↓ 只需修改 max-width 這個值 ↓↓↓ --- */
+  max-width: 300px; /* <--- 把這個數字改成你想要的圖片最大寬度 */
+                     /* 例如：200px 會更小，500px 會更大 */
+  width: 100%;
+  height: auto;
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #fff;
+}
+/* --- 學習紀錄頁面樣式 (簡潔版) --- */
+
+.learning-record-page h2 {
+  margin-top: 30px; /* 讓每個大分類標題上方有足夠的空間 */
+  border-bottom: 2px solid #eee; /* 給大標題加上底線 */
+  padding-bottom: 5px;
+}
+
+.learning-record-page h3 {
+  color: #333;
+}
+
+.learning-record-page .project-meta {
+  font-size: 14px; /* 讓日期和工具的字體小一點 */
+  color: #666;    /* 顏色淺一點 */
+  font-style: italic;
+}
+
+.learning-record-page .project-links {
+  list-style-type: none; /* 移除項目符號 (小黑點) */
+  padding-left: 0;
+}
+
+.learning-record-page .project-links li {
+  margin-bottom: 8px; /* 每個連結之間的距離 */
+}
+
+.learning-record-page .project-links a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.learning-record-page .project-links a:hover {
+  text-decoration: underline; /* 滑鼠移上去時才顯示底線 */
+}
+
+/* --- 特定頁面連結樣式 (首頁 & 學習紀錄 & 常用檔案) --- */
+
+.homepage-content a,
+.learning-record-page a,
+.file-page-content a { /* <-- 確保 .file-page-content a 在這裡 */
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.homepage-content a:hover,
+.learning-record-page a:hover,
+.file-page-content a:hover { /* <-- 確保 .file-page-content a:hover 在這裡 */
+  text-decoration: underline;
+}

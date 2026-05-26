@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: myhtml
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn page:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: MAX_CONTENT_LENGTH
+        value: "52428800"
+      - key: MAX_TOTAL_STORAGE_BYTES
+        value: "2147483648"
+      - key: MAX_FILE_COUNT
+        value: "200"
+      - key: MAX_DOWNLOADS_PER_HOUR_PER_IP
+        value: "120"
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_BUCKET
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_REGION
+        value: auto
+      - key: R2_PREFIX
+        value: downloads
+      - key: R2_PRESIGNED_URL_EXPIRES
+        value: "600"

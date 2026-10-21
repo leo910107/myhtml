@@ -1,6 +1,6 @@
 # Cheng-Ho Wang Flask Website
 
-這是一個 Flask 個人網站，包含首頁、筆記、學習紀錄、關於我、站內搜尋，以及登入後的檔案上傳/刪除功能。
+這是一個 Flask 個人網站，包含首頁、筆記、專案資訊、關於我、站內搜尋，以及登入後的檔案上傳/刪除功能。
 
 ## Current Simple Deployment
 

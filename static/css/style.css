@@ -176,7 +176,7 @@ nav ul li a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 3px solid #fff;
 }
-/* --- 學習紀錄頁面樣式 (簡潔版) --- */
+/* --- 專案資訊頁面樣式 (簡潔版) --- */
 
 .learning-record-page h2 {
   margin-top: 30px; /* 讓每個大分類標題上方有足夠的空間 */
@@ -230,7 +230,7 @@ nav ul li a:hover {
   text-decoration: underline; /* 滑鼠移上去時才顯示底線 */
 }
 
-/* --- 特定頁面連結樣式 (首頁 & 學習紀錄 & 常用檔案) --- */
+/* --- 特定頁面連結樣式 (首頁 & 專案資訊 & 常用檔案) --- */
 
 .homepage-content a,
 .learning-record-page a,

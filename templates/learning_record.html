@@ -11,8 +11,15 @@
         <h1>專案資訊</h1>
         <section class="dashboard-section">
             <h2>客戶分群分析｜A、B、C 三大客群</h2>
-            <p>切換 2014–2018 年的客群、卡別使用組合與交易額平均數／中位數。這是群體統計，年度差異不代表同一批客戶的成長。</p>
-            <iframe class="dashboard-frame" src="{{ url_for('static', filename='dashboard/ABC_2014_2018_public_dashboard.html') }}?v=241f90c-boxplots" title="A、B、C 三大客群互動儀表板" loading="lazy"></iframe>
+            <p>選擇年份與主要客群，可加入一組或兩組客群比較箱形圖、客戶數及平均／中位交易額。這是群體統計，年度差異不代表同一批客戶的成長。</p>
+            <iframe class="dashboard-frame" src="{{ url_for('static', filename='dashboard/ABC_2014_2018_public_dashboard.html') }}?v=compare-20261021" title="A、B、C 三大客群互動儀表板" loading="lazy"></iframe>
         </section>
     </div>
+    <script>
+        const dashboardFrame = document.querySelector('.dashboard-frame');
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin || event.source !== dashboardFrame.contentWindow || event.data?.type !== 'bac-dashboard-height') return;
+            dashboardFrame.style.height = Math.max(800, Math.min(6000, Number(event.data.height) || 0)) + 'px';
+        });
+    </script>
 {% endblock %}
